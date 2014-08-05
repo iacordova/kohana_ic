@@ -21,7 +21,8 @@ class Controller_Sitetpl extends Controller_Template {
 			$this->template->content = '';
 
 			$this->template->styles = array();
-			$this->template->scripts = array();
+			$this->template->scripts_header = array();
+			$this->template->scripts_footer = array();
 		}
 	}
 
@@ -36,17 +37,23 @@ class Controller_Sitetpl extends Controller_Template {
 		if ($this->auto_render)
 		{
 			$styles = array(
-				'media/css/screen.css' => 'screen, projection',
-				'media/css/print.css' => 'print',
-				'media/css/style.css' => 'screen',
+				'media/css/style.css' => 'screen, projection',
+				'application/vendor/components/foundation/css/normalize.css' => 'screen',
+				'application/vendor/components/foundation/css/foundation.css' => 'screen'
 			);
 
-			$scripts = array(
-				'http://code.jquery.com/jquery.min.js',
+			$scripts_header = array(
+				'application/vendor/components/foundation/js/vendor/modernizr.js'
+			);
+
+			$scripts_footer = array(
+				'application/vendor/components/foundation/js/vendor/jquery.js',
+				'application/vendor/components/foundation/js/foundation.min.js'
 			);
 
 			$this->template->styles = array_merge( $this->template->styles, $styles );
-			$this->template->scripts = array_merge( $this->template->scripts, $scripts );
+			$this->template->scripts_header = array_merge( $this->template->scripts_header, $scripts_header );
+			$this->template->scripts_footer = array_merge( $this->template->scripts_footer, $scripts_footer );
 		}
 		parent::after();
 	}
