@@ -68,7 +68,12 @@ mb_substitute_character('none');
 /**
  * Set the default language
  */
-I18n::lang('en-us');
+$lang = Cookie::get('lang', 'en');
+if(!in_array($lang, array('es', 'en', 'en-us'))) {
+   // check the allowed languages, and force the default
+   $lang = 'en';
+}
+I18n::lang($lang);
 
 if (isset($_SERVER['SERVER_PROTOCOL']))
 {
